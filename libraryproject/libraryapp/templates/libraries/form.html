@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Library</title>
+</head>
+
+<body>
+    <h1>New Library</h1>
+
+    <form action="{% url 'libraryapp:libraries' %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <label for="title">Title: </label>
+            <input id="title" type="text" name="title">
+        </fieldset>
+        <fieldset>
+            <label for="address">Address: </label>
+            <input id="address" type="text" name="address">
+        </fieldset>
+        <input type="submit" value="Add It">
+    </form>
+
+</body>
+
+</html>
