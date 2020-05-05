@@ -10,6 +10,8 @@
 <body>
     <h1>Books</h1>
 
+    <a href="{%url 'libraryapp:book_form'%}">Add New Book</a>
+
     <ol>
         {% for book in all_books %}
         <li>
