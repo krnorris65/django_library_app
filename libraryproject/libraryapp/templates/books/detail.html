@@ -1,13 +1,7 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
+{% extends 'shared/base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <title>Book Detail</title>
-</head>
+{% block content %}
 
-<body>
     <section id="book-details">
         <h1>{{ book.title }}</h1>
         <h2>By {{ book.author }}</h2>
@@ -28,6 +22,4 @@
             <button>Delete</button>
         </form>
     </section>
-</body>
-
-</html>
+{% endblock%}

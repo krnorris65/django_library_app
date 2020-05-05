@@ -1,13 +1,7 @@
-{% load static%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Detail</title>
-</head>
-<body>
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
     <h1>{{ library.title}}</h1>
     <h3>Located at: {{library.address}}</h3>
-</body>
-</html>
+{% endblock %}
