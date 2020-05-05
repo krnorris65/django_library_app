@@ -9,7 +9,7 @@ from ..connection import Connection
 
 def get_librarian(librarian_id):
     with sqlite3.connect(Connection.db_path) as conn:
-        conn.row_factory = sqlite3.Row
+        conn.row_factory = model_factory(Librarian)
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
@@ -25,17 +25,7 @@ def get_librarian(librarian_id):
         WHERE l.id = ?
         """, (librarian_id,))
         
-        dataset = db_cursor.fetchone()
-
-        lib = Librarian()
-        lib.id = dataset["id"]
-        lib.location_id = dataset["location_id"]
-        lib.user_id = dataset["user_id"]
-        lib.first_name = dataset["first_name"]
-        lib.last_name = dataset["last_name"]
-        lib.email = dataset["email"]
-
-        return lib
+        return db_cursor.fetchone()
 
 def get_library(library_id):
     with sqlite3.connect(Connection.db_path) as conn:
