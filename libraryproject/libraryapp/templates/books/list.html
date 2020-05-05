@@ -1,16 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
+{% extends 'shared/base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <title>Library</title>
-</head>
+{% block content %}
 
-<body>
     <h1>Books</h1>
 
-    <a href="{%url 'libraryapp:book_form'%}">Add New Book</a>
+    <a href="{%url 'libraryapp:book_form'%}">Add Book To Inventory</a>
 
     <ol>
         {% for book in all_books %}
@@ -20,6 +14,4 @@
         </li>
         {% endfor %}
     </ol>
-</body>
-
-</html>
+{% endblock %}

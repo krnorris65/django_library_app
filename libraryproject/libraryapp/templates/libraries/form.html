@@ -1,14 +1,7 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'shared/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Library</title>
-</head>
+{% block content %}
 
-<body>
     <h1>New Library</h1>
 
     <form action="{% url 'libraryapp:libraries' %}" method="post">
@@ -24,6 +17,4 @@
         <input type="submit" value="Add It">
     </form>
 
-</body>
-
-</html>
+{% endblock %}

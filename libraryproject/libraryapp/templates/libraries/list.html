@@ -1,14 +1,7 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'shared/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
-</head>
+{% block content %}
 
-<body>
     <h1>Libraries</h1>
 
     <a href="{%url 'libraryapp:library_form'%}">Add New Library</a>
@@ -22,6 +15,4 @@
         {% endfor %}
     </ol>
 
-</body>
-
-</html>
+{% endblock %}
