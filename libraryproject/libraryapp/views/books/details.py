@@ -55,7 +55,8 @@ def book_details(request, book_id):
 
         template = 'books/detail.html'
         context = {
-            'book': book
+            'book': book,
+            'librarian': librarian
         }
 
         return render(request, template, context)
