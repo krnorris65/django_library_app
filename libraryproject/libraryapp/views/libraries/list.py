@@ -9,12 +9,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def library_list(request):
     if request.method == 'GET':
-        all_books = Book.objects.all()
         all_libraries = Library.objects.all()
-
-        for library in all_libraries:
-            books = all_books.filter(location_id=library.id)
-            library.books = books
 
         template_name = 'libraries/list.html'
 

@@ -13,7 +13,7 @@
             </a>
             ({{ library.address }})
             <ul>
-            {% for book in library.books %}
+            {% for book in library.book_set.all %}
                 <li>{{ book.title }}</li>
             {% endfor %}
             </ul>
