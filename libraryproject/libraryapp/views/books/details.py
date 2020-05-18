@@ -33,8 +33,8 @@ def create_book(cursor, row):
 
 @login_required
 def book_details(request, book_id):
+    book = Book.objects.get(pk=book_id)
     if request.method == 'GET':
-        book = Book.objects.get(pk=book_id)
 
         template = 'books/detail.html'
         context = {
@@ -49,15 +49,14 @@ def book_details(request, book_id):
             "actual_method" in form_data
             and form_data["actual_method"] == "PUT"
         ):
-            update_book = Book.objects.get(pk=book_id)
 
-            update_book.title = form_data['title'] 
-            update_book.author = form_data['author'] 
-            update_book.isbn = form_data['isbn']
-            update_book.year_published = form_data['year_published'] 
-            update_book.location_id = form_data["location"]
+            book.title = form_data['title'] 
+            book.author = form_data['author'] 
+            book.isbn = form_data['isbn']
+            book.year_published = form_data['year_published'] 
+            book.location_id = form_data["location"]
         
-            update_book.save()
+            book.save()
 
             return redirect(reverse('libraryapp:books'))
 
@@ -69,7 +68,6 @@ def book_details(request, book_id):
             "actual_method" in form_data
             and form_data["actual_method"] == "DELETE"
         ):
-            delete_book = Book.objects.get(pk=book_id)
-            delete_book.delete()
+            book.delete()
 
             return redirect(reverse('libraryapp:books'))

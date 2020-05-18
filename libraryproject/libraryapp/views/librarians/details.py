@@ -6,14 +6,10 @@ from libraryapp.models import Librarian
 from ..connection import Connection
 
 
-def get_librarian(librarian_id):
-    librarian = Librarian.objects.get(pk=librarian_id)
-    return librarian
-
 @login_required
 def librarian_details(request, librarian_id):
     if request.method == 'GET':
-        librarian = get_librarian(librarian_id)
+        librarian = Librarian.objects.get(pk=librarian_id)
 
         template = 'librarians/detail.html'
         context = {
