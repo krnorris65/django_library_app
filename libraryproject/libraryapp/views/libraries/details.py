@@ -7,26 +7,10 @@ from libraryapp.models import model_factory
 from ..connection import Connection
 
 
-def get_library(library_id):
-    with sqlite3.connect(Connection.db_path) as conn:
-        conn.row_factory = model_factory(Library)
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
-        SELECT
-            l.id,
-            l.title,
-            l.address
-        FROM libraryapp_library l
-        WHERE l.id = ?
-        """, (library_id,))
-
-        return db_cursor.fetchone()
-
 @login_required
 def library_details(request, library_id):
     if request.method == 'GET':
-        library = get_library(library_id)
+        library = Library.objects.get(pk=library_id)
 
         template = 'libraries/detail.html'
         context = {
