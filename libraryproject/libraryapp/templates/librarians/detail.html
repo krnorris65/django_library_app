@@ -2,6 +2,6 @@
 
 {% block content %}
 
-    <h1>{{librarian.first_name}} {{librarian.last_name}}</h1>
-    <h3>Works at: {{library.title}}</h3>
+    <h1>{{librarian.user.first_name}} {{librarian.user.last_name}}</h1>
+    <h3>Works at: {{librarian.location.title}}</h3>
 {% endblock %}

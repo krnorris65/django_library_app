@@ -2,59 +2,22 @@ import sqlite3
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from libraryapp.models import Library, Librarian
-from libraryapp.models import model_factory
+from libraryapp.models import Librarian
 from ..connection import Connection
 
 
 def get_librarian(librarian_id):
-    with sqlite3.connect(Connection.db_path) as conn:
-        conn.row_factory = model_factory(Librarian)
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
-        SELECT
-            l.id,
-            l.location_id,
-            l.user_id,
-            u.first_name,
-            u.last_name,
-            u.email
-        FROM libraryapp_librarian l
-        JOIN auth_user u ON l.user_id = u.id
-        WHERE l.id = ?
-        """, (librarian_id,))
-        
-        return db_cursor.fetchone()
-
-def get_library(library_id):
-    with sqlite3.connect(Connection.db_path) as conn:
-        conn.row_factory = model_factory(Library)
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
-        SELECT
-            l.id,
-            l.title,
-            l.address
-        FROM libraryapp_library l
-        WHERE l.id = ?
-        """, (library_id,))
-
-        return db_cursor.fetchone()
-
-
+    librarian = Librarian.objects.get(pk=librarian_id)
+    return librarian
 
 @login_required
 def librarian_details(request, librarian_id):
     if request.method == 'GET':
         librarian = get_librarian(librarian_id)
-        library = get_library(librarian.location_id)
 
         template = 'librarians/detail.html'
         context = {
-            'librarian': librarian,
-            'library': library
+            'librarian': librarian
         }
 
         return render(request, template, context)
